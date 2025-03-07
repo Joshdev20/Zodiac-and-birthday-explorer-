@@ -1,0 +1,46 @@
+body {
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.cosmic-background {
+    position: fixed;
+    width: 300%;
+    height: 300%;
+    background: radial-gradient(circle, rgba(88,28,135,0.6) 0%, rgba(0,0,0,1) 60%);
+    animation: cosmicMove 30s linear infinite;
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.scrollable-list {
+    max-height: 60vh; /* Adjust as needed */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 13px;
+    background-color: #f9f9f9;
+    color: #000;
+    border-radius: 5px;
+}
+
+
+#resultModal {
+    overflow-y: auto; /* Enables scroll if modal content overflows screen height */
+}
+
+#resultModalContent {
+    max-height: none; /* Don't constrain artificially */
+    overflow: visible; /* Let content naturally flow */
+    padding: 15px;
+    background-color: #2d2d2d;
+    border-radius: 8px;
+}
+
+
+
+@keyframes cosmicMove {
+    from { transform: translate(-50%, -50%); }
+    to { transform: translate(50%, 50%); }
+}
