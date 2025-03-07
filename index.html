@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Zodiac Explorer - Birthday Chronicles</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="bg-gray-900 text-white font-sans relative">
+
+<!-- Cosmic Background Gradient -->
+<div class="absolute inset-0 bg-gradient-to-b from-purple-900 via-gray-900 to-black opacity-80 pointer-events-none"></div>
+
+<!-- Main Container -->
+<div class="relative container mx-auto p-5 min-h-screen flex flex-col justify-center items-center">
+    <div class="text-center space-y-5 bg-gray-800 bg-opacity-90 p-6 rounded-lg shadow-lg border border-gray-700 max-w-lg w-full">
+        <img src="logo.png" alt="Zodiac Explorer Logo" class="w-24 mx-auto">
+        <h1 class="text-4xl font-bold text-purple-400 animate-bounce">Zodiac Explorer</h1>
+        <p class="text-gray-300">Discover your personality, history, horoscope & more!</p>
+
+        <div class="space-y-4">
+            <input type="text" id="userName" placeholder="Enter Your Name"
+                   class="p-3 w-full rounded bg-gray-700 border border-gray-600 placeholder-gray-400">
+            <input type="date" id="birthDate"
+                   class="p-3 w-full rounded bg-gray-700 border border-gray-600">
+            <button onclick="showZodiacDetails()" 
+                    class="w-full bg-pink-600 hover:bg-pink-700 text-white py-3 font-semibold rounded-full transition-transform transform hover:scale-105">
+                Explore My Zodiac
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Results Modal -->
+<div id="resultModal" class="hidden fixed inset-0 bg-black bg-opacity-80 z-50 overflow-y-auto flex justify-center items-start">
+    <div id="resultModalContent" class="bg-gray-800 p-6 rounded-lg max-w-lg w-full mt-10 space-y-4">
+        <!-- all existing content inside the modal here -->
+        <h2 class="text-2xl font-bold text-purple-400 text-center">
+            Welcome, <span id="modalUserName"></span>!
+        </h2>
+
+        <div class="flex items-center justify-center space-x-3">
+            <p class="text-5xl" id="zodiacIcon"></p>
+            <p class="text-xl font-bold" id="zodiacName"></p>
+        </div>
+
+        <p class="text-gray-400"><strong>Personality Traits:</strong> <span id="zodiacTraits"></span></p>
+        <p class="text-gray-300"><strong>Zodiac Story:</strong> <span id="zodiacStory"></span></p>
+
+        <hr class="border-gray-600">
+
+        <p style="font-size: 1.5rem"><strong>Horoscope of the Day:</strong> <span id="horoscope" class="text-yellow-400"></span></p>
+        <p><strong>Lucky Numbers:</strong> <span id="luckyNumbers" class="text-green-400"></span></p>
+
+        <div class="mt-3">
+            <p style="font-size: 1.5rem; padding: 5px;" class="text-pink-400 font-semibold">Famous People Born Today:</p>
+            <ul id="famousPeople" class="scrollable-list list-disc pl-5 text-gray-300 space-y-1"></ul>
+        </div>
+
+        <div class="mt-3">
+            <p style="font-size: 1.5rem; padding: 5px;" class="text-purple-400 font-semibold">Historic Events on Your Birthday:</p>
+            <ul id="historicalFacts" class="scrollable-list list-disc pl-5 text-gray-300 space-y-1"></ul>
+        </div>
+
+        <hr class="border-gray-600">
+
+        <p><strong>Tarot Card of the Day:</strong> <span id="tarotCard" class="text-pink-400 font-semibold"></span></p>
+
+        <!-- Compatibility Checker -->
+        <div class="mt-4">
+            <label class="block text-gray-300 mb-1">Check Compatibility with:</label>
+            <select id="compatibilitySign"
+                    class="p-3 w-full bg-gray-700 rounded border border-gray-600">
+                <option>Aries</option><option>Taurus</option><option>Gemini</option>
+                <option>Cancer</option><option>Leo</option><option>Virgo</option>
+                <option>Libra</option><option>Scorpio</option><option>Sagittarius</option>
+                <option>Capricorn</option><option>Aquarius</option><option>Pisces</option>
+            </select>
+            <button onclick="checkCompatibility()" 
+                    class="w-full bg-pink-600 hover:bg-pink-700 text-white py-2 mt-3 rounded-full font-semibold transition-transform transform hover:scale-105">
+                Check Compatibility
+            </button>
+            <p id="compatibilityResult" class="text-purple-400 mt-3"></p>
+        </div>
+
+        <!-- Close Modal -->
+        <div class="flex justify-end">
+            <button onclick="closeModal()" 
+                    class="bg-gray-700 hover:bg-gray-600 py-2 px-4 rounded transition-transform transform hover:scale-105">
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Scripts -->
+<script src="zodiacData.js"></script>
+<script src="zodiacHoroscopes.js"></script>
+<script src="tarotCards.js"></script>
+<script src="main.js"></script>
+
+<!-- Tarot Card Initialization (Moved to DOMContentLoaded for safety) -->
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const tarotCard = getRandomTarotCard();
+        document.getElementById('tarotCard').innerText = `${tarotCard.name} — ${tarotCard.meaning}`;
+    });
+</script>
+
+</body>
+</html>
