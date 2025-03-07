@@ -25,6 +25,12 @@ body {
     border-radius: 5px;
 }
 
+img{
+  background: plum;
+  padding: 5px;
+  border-radius: 50%;
+}
+
 
 #resultModal {
     overflow-y: auto; /* Enables scroll if modal content overflows screen height */
